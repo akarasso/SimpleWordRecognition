@@ -1,8 +1,13 @@
 #!/usr/bin/node
 
-const levenshtein = require('./levenshtein')
-const jaccard = require('./jaccard')
-const get_closest_word = require('./index')
+const {
+	Levenshtein,
+	Jaccard,
+	Damerau_Levenshtein,
+	Jaro,
+	JaroWinkler,
+	get_closest_word,
+} = require('./lib')
 
 /*
 **	Example
@@ -15,6 +20,4 @@ const get_closest_word = require('./index')
 **		.catch(console.log)
 */
 
-get_closest_word(jaccard, process.argv[2], ["next", "dev", "previous", "prev"])
-	.then(console.log)
-	.catch(console.log)
+console.log(get_closest_word(JaroWinkler, process.argv[2], ["next", "dev", "previous", "prev"]))
