@@ -1,7 +1,3 @@
-/*
-**	Initialise levenshtein matrix
-*/
-
 const initMatrix = (input, cmp) => {
 	const mat = new Array(input.length + 1)
 	for (let y = 0; y < input.length + 1; y++) {
@@ -19,10 +15,6 @@ const initMatrix = (input, cmp) => {
 	return mat
 }
 
-/*
-**	Return cost matrix
-*/
-
 const calc_cost_matrix = (input, cmp) => {
 	const ret = new Array(input.length)
 	for (let i = 0; i < input.length; i++) {
@@ -34,11 +26,6 @@ const calc_cost_matrix = (input, cmp) => {
 	}
 	return ret
 }
-
-/*
-**	return the number of deletion/intert/substitute
-**	to transforme input word to another word
-*/
 
 const distance = (mat, costMat, input, cmp) => {
 	for (var y = 1; y < mat.length; y++) {
@@ -61,7 +48,7 @@ const distance = (mat, costMat, input, cmp) => {
 
 
 /*
-**	Levenshtein method
+**	Damereau Levenshtein method
 */
 
 const damereau_levenshtein = (input, cmp) => {
@@ -70,4 +57,17 @@ const damereau_levenshtein = (input, cmp) => {
 	return distance(matrix, costMat, input, cmp)
 }
 
-module.exports = levenshtein
+/*
+**	Levenshtein method
+*/
+
+const levenshtein = (input, cmp) => {
+	const matrix = initMatrix(input, cmp)
+	const costMat = calc_cost_matrix(input, cmp)
+	return distance(matrix, costMat)
+}
+
+module.exports = {
+	damereau_levenshtein,
+	levenshtein,
+}
