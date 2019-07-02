@@ -1,5 +1,3 @@
-const getMin = require('./utils')
-
 /*
 **	Initialise levenshtein matrix
 */
@@ -45,7 +43,7 @@ const calc_cost_matrix = (input, cmp) => {
 const distance = (mat, costMat) => {
 	for (var y = 1; y < mat.length; y++) {
 		for (var x = 1; x < mat[0].length; x++) {
-			mat[y][x] = getMin(
+			mat[y][x] = Math.min(
 				mat[y-1][x] + 1,
 				mat[y][x-1] + 1,
 				mat[y-1][x - 1] + costMat[y - 1][x - 1]
